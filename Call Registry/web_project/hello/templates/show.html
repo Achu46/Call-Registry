@@ -1,0 +1,132 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show Submissions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <center><h2><b>Show Submissions</b></h2></center>
+    <table class="table table-bordered">
+        <thead>
+            
+            <tr style="background-color: blue; color: white;">
+                <th style="background-color: red; color: white;">ID</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Date</th>
+                <th>Next Follow-up Date</th>
+                <th>Additional Data</th>
+
+            </tr>
+        </thead>
+        {% if key1 %}
+        <tbody>
+            {% for item in key1 %}
+                <tr>
+                    <td style="background-color: red; color: white;">{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.number }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.next_followup_date }}</td>
+                    <td>{{ item.additional_data }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <tbody>
+            <tr>
+                <td colspan="8" class="text-center">No data available</td>
+            </tr>
+        </tbody>
+        {% endif %}
+    </table>
+</div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show Submissions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <!-- Menu Bar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Show Submissions</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right"><form action="{%url 'b' %}" method="post">
+                {%csrf_token%}
+                <li>Search<input type="search" class="glyphiconglyphicon-search" name="name" placeholder="Search"></span></li>
+                </form>
+                {% if v == 'a' %}
+                <form action="{% url 'a' %}" method="post">
+                    {%csrf_token%}
+                <li><button class="glyphiconglyphicon-arrow-left"></span> Back</button></li>
+            </form>
+               {%else%}
+               <form action="{% url 'c' %}" method="post">
+                {%csrf_token%}
+                <li><button class="glyphiconglyphicon-arrow-left"></span> Back</button></li>
+            </form>
+            {%endif%}
+            <li>
+                <form action="{% url 'order' %}" method="post">
+                    {%csrf_token%}
+                    <li><button class="glyphiconglyphicon-arrow-left"></span>Order</button></li>
+                </form>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <center><h2><b>Show Submissions</b></h2></center>
+    <table class="table table-bordered">
+        <thead>
+            <tr style="background-color: white; color:black;">
+                <th style="background-color: navy; color: white;">ID</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Date</th>
+                <th>Next Follow-up Date</th>
+                <th>Additional Data</th>
+            </tr>
+        </thead>
+        {% if key1 %}
+        <tbody>
+            {% for item in key1 %}
+                <tr>
+                    <td style="background-color: navy; color: white;">{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.number }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.next_followup_date }}</td>
+                    <td>{{ item.additional_data }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <tbody>
+            <tr>
+                <td colspan="6" class="text-center">No data available</td>
+            </tr>
+        </tbody>
+        {% endif %}
+    </table>
+</div>
+
+</body>
+</html>
